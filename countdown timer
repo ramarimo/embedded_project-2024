@@ -3,12 +3,12 @@ void LCD_String_countdown (int mm ,int m , int ss , int s)
 	while(1)
 	{
 		lcd_4bits_cmd(0x1);
-	  LCD_String("      ");
-		lcd_4bits_data( mm + 48);
-	  lcd_4bits_data( m + 48);
-		lcd_4bits_data(':');
-	  lcd_4bits_data( ss + 48);
-	  lcd_4bits_data( s + 48);
+		LCD_String("      ");
+	        lcd_4bits_data( mm + 48);
+	        lcd_4bits_data( m + 48);
+                lcd_4bits_data(':');
+	        lcd_4bits_data( ss + 48);
+	        lcd_4bits_data( s + 48);
 			
 		if(s>0)
 		{	
