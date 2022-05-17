@@ -4,6 +4,8 @@ void switches(void) {
 			//char external_button=SW3();
 			if ((SW2 == 0x0)&&(external_button==1)) {         //;{                //sw2 must be pressed and the door must be closed
 				
+				LCD_String_countdown(0,m,ss,s)
+				
 					GPIO_PORTF_DATA_R = (GPIO_PORTF_DATA_R&0x11) | 0x11;
 			    OVEN_ON();                                                          //start cooking>>timer starts counting
 				  while((GPIO_PORTF_DATA_R&0x10) !=0x00);                             //&&(external_button==1));the oven is cooking as long as the condition satisfied
