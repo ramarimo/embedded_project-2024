@@ -28,19 +28,4 @@ void switches(void) {
 						 
 					}
 						
-					
-
-
-
-int main(){
-
-SystemInit();
-RGB(0x00);
-delay_ms(200);
-while (1) {
-	switches();
-}
-
-
-
-}
+				
