@@ -33,7 +33,7 @@ void cooking_time ()
 	delay_milli(200);
 	
 	
-	//while(key2==0 & sw1==0x00)
+	
 	while(1)
 	{ 
 		
@@ -174,7 +174,7 @@ void cooking_time ()
 			lcd_4bits_data(key3);
 			
 			LCD_String("  press sw2");
-	  //lcd_4bits_cmd(0xcf);
+	 
 		lcd_4bits_cmd(0x0f);
 		delay_milli(100);
 		lcd_4bits_cmd(0xc0);
@@ -202,8 +202,7 @@ void cooking_time ()
 				return;
 				}
 			
-//			delay_milli(2000);
-//			return;
+
 		}
 		
 		delay_milli(100);
@@ -244,7 +243,7 @@ void cooking_time ()
 				lcd_4bits_data(key4);
 			
 			LCD_String("  press sw2");
-	  //lcd_4bits_cmd(0xcf);
+	 
 		lcd_4bits_cmd(0x0f);
 		delay_milli(100);
 		lcd_4bits_cmd(0xc0);
@@ -281,8 +280,7 @@ void cooking_time ()
 	
 			
 			
-//	lcd_4bits_cmd(0x1);
-//				LCD_String("     CORRECT");
+
 	
 	
 }
