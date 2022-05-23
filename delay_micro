@@ -1,0 +1,8 @@
+void delay_micro ( unsigned long delay)
+{
+	unsigned long i;
+	for( i=0 ; i<delay ; i++)
+	{
+		Systick_Wait (16);
+	}
+}
