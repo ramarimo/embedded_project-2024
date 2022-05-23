@@ -1,4 +1,6 @@
-const unsigned char keypad [4][4]={ {'1','2','3','A'},
+unsigned char get_key ()
+{
+	const unsigned char keypad [4][4]={ {'1','2','3','A'},
 																			{'4','5','6','B'},
 																			{'7','8','9','C'},
 																			{'*','0','#','D'} };
