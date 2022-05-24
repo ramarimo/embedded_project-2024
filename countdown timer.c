@@ -1,6 +1,6 @@
 void LCD_String_countdown (int mm ,int m , int ss , int s)
 {
-		timer_on=1;
+	timer_on=1;
 	helper=0;
 	__enable_irq();
 	
@@ -10,12 +10,12 @@ void LCD_String_countdown (int mm ,int m , int ss , int s)
 		__enable_irq();
 		GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
 		lcd_4bits_cmd(0x1);
-	  LCD_String("      ");
+	        LCD_String("      ");
 		lcd_4bits_data( mm + 48);
-	  lcd_4bits_data( m + 48);
+	        lcd_4bits_data( m + 48);
 		lcd_4bits_data(':');
-	  lcd_4bits_data( ss + 48);
-	  lcd_4bits_data( s + 48);
+	        lcd_4bits_data( ss + 48);
+	        lcd_4bits_data( s + 48);
 		delay_milli(1000); 
 			
 		if(s>0)
