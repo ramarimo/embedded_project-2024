@@ -99,9 +99,9 @@ void Buzzer_init()
 void blink()
 {
 		    
-GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
-delay_milli(500);
-	GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R &=~ 0x0E;
+				GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
+				delay_milli(500);
+				GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R &=~ 0x0E;
 				
 				
 	}
@@ -109,21 +109,21 @@ delay_milli(500);
 void Buzzer()
 {
 	
-GPIO_PORTE_DATA_R |= 0x20;    //buzzer on 
-blink();
-GPIO_PORTE_DATA_R &= ~0x20;   //buzzer off
+		GPIO_PORTE_DATA_R |= 0x20;    //buzzer on 
+	  blink();
+	  GPIO_PORTE_DATA_R &= ~0x20;   //buzzer off
 	  
  }
 
 void Buzzer_Blink()
 { 
-char y;
+							char y;
 							
-for(y=0;y<3;y++)
-{
-Buzzer();
-delay_milli(500);
-}
+									for(y=0;y<3;y++)
+									{
+										Buzzer();
+										delay_milli(500);
+									}
 								
 	}
 void rgb_init ()
@@ -351,91 +351,63 @@ void LCD_String (char *str)
 		}
 			
 }
+
 void LCD_String_countdown (int mm ,int m , int ss , int s)
 {
-    timer_on=1;
-    helper=0;
-    __enable_irq();
-
-    while(timer_on==1)
-    {
-        helper=1;
-        __enable_irq();
-        GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
-        lcd_4bits_cmd(0x1);
-      LCD_String("      ");
-        lcd_4bits_data( mm + 48);
-      lcd_4bits_data( m + 48);
-        lcd_4bits_data(':');
-      lcd_4bits_data( ss + 48);
-      lcd_4bits_data( s + 48);
-        delay_milli(1000); 
-
-        if(s>0)
-        {    
-          s   -= 1 ;
-        }
-        else if(s==0 & ss > 0)
-        {
-            ss -= 1;
-          s   = 9 ;
-        }
-        else if(s==0 & ss==0 & m>0)
-        {
-            m -=1;
-            ss=5;
-            s=9;
-        }
-        else if(s==0 & ss==0 & m==0 & mm>0)
-        {
-            mm-=1;
-            m=9;
-            ss=5;
-            s=9;
-        }
-        else if(s==0 & ss==0 & m==0 & mm==0)
-        {
-            Buzzer_Blink();
-            __disable_irq();
-            GPIO_PORTF_DATA_R &=~ 0x0E;
-            return;
-        }
-
-    }
-    __disable_irq();
-    GPIO_PORTF_DATA_R &=~ 0x0E;
-    return;
+	timer_on=1;
+	helper=0;
+	__enable_irq();
+	
+	while(timer_on==1)
+	{
+		helper=1;
+		__enable_irq();
+		GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
+		lcd_4bits_cmd(0x1);
+	  LCD_String("      ");
+		lcd_4bits_data( mm + 48);
+	  lcd_4bits_data( m + 48);
+		lcd_4bits_data(':');
+	  lcd_4bits_data( ss + 48);
+	  lcd_4bits_data( s + 48);
+		delay_milli(1000); 
+			
+		if(s>0)
+		{	
+		  s   -= 1 ;
+		}
+		else if(s==0 & ss > 0)
+		{
+			ss -= 1;
+		  s   = 9 ;
+		}
+		else if(s==0 & ss==0 & m>0)
+		{
+			m -=1;
+			ss=5;
+			s=9;
+		}
+		else if(s==0 & ss==0 & m==0 & mm>0)
+		{
+			mm-=1;
+			m=9;
+			ss=5;
+			s=9;
+		}
+		else if(s==0 & ss==0 & m==0 & mm==0)
+		{
+			Buzzer_Blink();
+			__disable_irq();
+			GPIO_PORTF_DATA_R &=~ 0x0E;
+			return;
+		}
+				
+	}
+	__disable_irq();
+	GPIO_PORTF_DATA_R &=~ 0x0E;
+	return;
 }
- 
-void pop_corn ()
-{
-    int sw1, sw2;
 
-
-    lcd_4bits_cmd(0x1);        
-    LCD_String("    Pop corn");
-
-    while(1)
-    {
-        sw1 = sw_input() & 0x10;
-        sw2 = sw_input() & 0x1;
-        delay_milli(100);
-
-        if(sw1==0x0 )
-            {
-                return;
-            }
-        else if (sw2 ==0 )
-            {
-                lcd_4bits_cmd(0x0c); ///////cursor blinking off
-                lcd_4bits_cmd(0x1);
-          LCD_String_countdown(0,1,0,0);
-                return;
-            }
-
-        }
-
-}
 void pop_corn ()
 {
 	int sw1, sw2;
@@ -456,7 +428,7 @@ void pop_corn ()
 			}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				lcd_4bits_cmd(0x1);
 	      LCD_String_countdown(0,1,0,0);
 				return;
@@ -492,7 +464,7 @@ void beef()
 			lcd_4bits_cmd(0x1);
 			LCD_String("wrong input");
 			lcd_4bits_cmd(0x0c);
-		  delay_milli(2000);
+		        delay_milli(2000);
 			goto loop_beef;
 		}
 	else if(48<key & key<58)
@@ -506,7 +478,7 @@ void beef()
 	{
 	
 				sw1 = sw_input() & 0x10;
-		    sw2 = sw_input() & 0x1;
+		                sw2 = sw_input() & 0x1;
 	
 		
 		
@@ -556,7 +528,7 @@ do
 			lcd_4bits_cmd(0x1);
 			LCD_String("wrong input");
 			lcd_4bits_cmd(0x0c);
-		  delay_milli(2000);
+		        delay_milli(2000);
 			goto loop_chicken;
 		}
 		else if(48<key & key<58)
@@ -569,7 +541,7 @@ do
 			while(1)
 	{
 				sw1 = sw_input() & 0x10;
-		    sw2 = sw_input() & 0x1;
+		                sw2 = sw_input() & 0x1;
 		
 		 if (sw1 ==0x0)
 		{
@@ -607,12 +579,12 @@ void cooking_time ()
 		if(key1!=0)
 		{
 		lcd_4bits_cmd(0x1);
-	  LCD_String("cooking time?");
-	  lcd_4bits_cmd(0xc0);
-	  LCD_String("max(30:00) ");
+       	        LCD_String("cooking time?");
+	        lcd_4bits_cmd(0xc0);
+	        LCD_String("max(30:00) ");
 		LCD_String("  : ");
 		lcd_4bits_data(key1);
-	  lcd_4bits_cmd(0xcf);
+	        lcd_4bits_cmd(0xcf);
 		lcd_4bits_cmd(0x0f);
 		delay_milli(250);
 		break;
@@ -637,14 +609,14 @@ void cooking_time ()
 			lcd_4bits_cmd(0x1);
 			LCD_String("     ERROR");
 			lcd_4bits_cmd(0xc0);
-			lcd_4bits_cmd(0x0c); //cursor blinking off
+			lcd_4bits_cmd(0x0c); ///////cursor blinking off
 			delay_milli(3000);
 			cooking_time();
 			return;
 		}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				LCD_String_countdown(0,0,0,key1 - 48);
 				return;
 			}
@@ -680,17 +652,17 @@ void cooking_time ()
 		}
 		else if( key2<48 | key2>57)
 		{
-			  lcd_4bits_cmd(0x1);
+			        lcd_4bits_cmd(0x1);
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				delay_milli(3000);
-			  cooking_time();
+			        cooking_time();
 				return;
 		}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				LCD_String_countdown(0,0,key1 - 48 , key2 - 48);
 				return;
 				}
@@ -731,14 +703,14 @@ void cooking_time ()
 			lcd_4bits_cmd(0x1);
 			LCD_String("     ERROR");
 			lcd_4bits_cmd(0xc0);
-			lcd_4bits_cmd(0x0c); //cursor blinking off
+			lcd_4bits_cmd(0x0c); ///////cursor blinking off
 			delay_milli(3000);
 			cooking_time();
 			return;
 		}
 		else if (sw2 ==0 )
 		{
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				LCD_String_countdown(0,key1 - 48 , key2 - 48,key3 - 48 );
 				return;
 		}
@@ -746,9 +718,9 @@ void cooking_time ()
 		else if(key4!=0)
 		{
 			lcd_4bits_cmd(0x1);
-	    LCD_String("cooking time?");
-	    lcd_4bits_cmd(0xc0);
-	    LCD_String("max(30:00) ");
+	                LCD_String("cooking time?");
+	                lcd_4bits_cmd(0xc0);
+	                LCD_String("max(30:00) ");
 			lcd_4bits_data(key1);	
 			lcd_4bits_data(key2);
 			LCD_String(":");
@@ -761,7 +733,7 @@ void cooking_time ()
 		while(1)
 		{
 			sw1 = sw_input() & 0x10;
-		  sw2 = sw_input() & 0x1;
+		        sw2 = sw_input() & 0x1;
 			total_time = (key1-48)*10*60 + (key2-48)*60 + (key3-48)*10 + (key4-48) ;
 			delay_milli(100);
 			if ( key4<48 | key4>57)
@@ -769,7 +741,7 @@ void cooking_time ()
 					lcd_4bits_cmd(0x1);
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				delay_milli(3000);
 				cooking_time();
 				return;
@@ -780,7 +752,7 @@ void cooking_time ()
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
 				LCD_String("max time 30:00");
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				delay_milli(3000);
 				cooking_time();
 				return;
@@ -794,7 +766,7 @@ void cooking_time ()
 				
 				else if (sw2 ==0 )
 		{
-				lcd_4bits_cmd(0x0c); //cursor blinking off
+				lcd_4bits_cmd(0x0c); ///////cursor blinking off
 				LCD_String_countdown(key1 - 48 , key2 - 48,key3 - 48 , key4 - 48 );
 				
 				return;
@@ -809,14 +781,14 @@ int main()
 	Systick_Init();
 	sw_init();
 	SW1_interrupt_init();
-  sw3_init();
-  SW3_interrupt_init();
+        sw3_init();
+        SW3_interrupt_init();
 	keypad_init ();
 	lcd_init();
 	rgb_init ();
 	Buzzer_init();
 	lcd_4bits_cmd(0x1);
-  lcd_4bits_cmd(0x80);
+        lcd_4bits_cmd(0x80);
 	
 	delay_milli(100);
 	
@@ -824,8 +796,8 @@ int main()
 	{
 		lcd_4bits_cmd(0x1);
 		LCD_String("enter a choice");
-	  lcd_4bits_cmd(0xc0);
-	  LCD_String("to begin cooking");
+	        lcd_4bits_cmd(0xc0);
+	        LCD_String("to begin cooking");
 		do
 			{
 				key = get_key();
@@ -836,8 +808,8 @@ int main()
 		{
 			 case 'A' :
 			
-        pop_corn();
-				break;
+                                  pop_corn();
+			    break;
 			 
 			 
 			 case 'B' :
@@ -861,7 +833,7 @@ int main()
 			 default :
 				 lcd_4bits_cmd(0x1);
 				 LCD_String("wrong input");
-		   	 delay_milli(3000);
+		   	         delay_milli(3000);
 			   break;
 
 		}
