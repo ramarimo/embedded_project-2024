@@ -99,9 +99,9 @@ void Buzzer_init()
 void blink()
 {
 		    
-				GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
-				delay_milli(500);
-				GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R &=~ 0x0E;
+GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R |= 0x0E;
+delay_milli(500);
+	GPIO_PORTF_DATA_R =GPIO_PORTF_DATA_R &=~ 0x0E;
 				
 				
 	}
@@ -109,21 +109,21 @@ void blink()
 void Buzzer()
 {
 	
-		GPIO_PORTE_DATA_R |= 0x20;    //buzzer on 
-	  blink();
-	  GPIO_PORTE_DATA_R &= ~0x20;   //buzzer off
+GPIO_PORTE_DATA_R |= 0x20;    //buzzer on 
+blink();
+GPIO_PORTE_DATA_R &= ~0x20;   //buzzer off
 	  
  }
 
 void Buzzer_Blink()
 { 
-							char y;
+char y;
 							
-									for(y=0;y<3;y++)
-									{
-										Buzzer();
-										delay_milli(500);
-									}
+for(y=0;y<3;y++)
+{
+Buzzer();
+delay_milli(500);
+}
 								
 	}
 void rgb_init ()
@@ -373,7 +373,7 @@ void pop_corn ()
 			}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				lcd_4bits_cmd(0x1);
 	      LCD_String_countdown(0,1,0,0);
 				return;
@@ -554,14 +554,14 @@ void cooking_time ()
 			lcd_4bits_cmd(0x1);
 			LCD_String("     ERROR");
 			lcd_4bits_cmd(0xc0);
-			lcd_4bits_cmd(0x0c); ///////cursor blinking off
+			lcd_4bits_cmd(0x0c); //cursor blinking off
 			delay_milli(3000);
 			cooking_time();
 			return;
 		}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				LCD_String_countdown(0,0,0,key1 - 48);
 				return;
 			}
@@ -600,14 +600,14 @@ void cooking_time ()
 			  lcd_4bits_cmd(0x1);
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				delay_milli(3000);
 			  cooking_time();
 				return;
 		}
 		else if (sw2 ==0 )
 			{
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				LCD_String_countdown(0,0,key1 - 48 , key2 - 48);
 				return;
 				}
@@ -648,14 +648,14 @@ void cooking_time ()
 			lcd_4bits_cmd(0x1);
 			LCD_String("     ERROR");
 			lcd_4bits_cmd(0xc0);
-			lcd_4bits_cmd(0x0c); ///////cursor blinking off
+			lcd_4bits_cmd(0x0c); //cursor blinking off
 			delay_milli(3000);
 			cooking_time();
 			return;
 		}
 		else if (sw2 ==0 )
 		{
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				LCD_String_countdown(0,key1 - 48 , key2 - 48,key3 - 48 );
 				return;
 		}
@@ -686,7 +686,7 @@ void cooking_time ()
 					lcd_4bits_cmd(0x1);
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				delay_milli(3000);
 				cooking_time();
 				return;
@@ -697,7 +697,7 @@ void cooking_time ()
 				LCD_String("     ERROR");
 				lcd_4bits_cmd(0xc0);
 				LCD_String("max time 30:00");
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				delay_milli(3000);
 				cooking_time();
 				return;
@@ -711,7 +711,7 @@ void cooking_time ()
 				
 				else if (sw2 ==0 )
 		{
-				lcd_4bits_cmd(0x0c); ///////cursor blinking off
+				lcd_4bits_cmd(0x0c); //cursor blinking off
 				LCD_String_countdown(key1 - 48 , key2 - 48,key3 - 48 , key4 - 48 );
 				
 				return;
